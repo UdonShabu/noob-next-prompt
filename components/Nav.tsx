@@ -5,7 +5,7 @@ import React from "react";
 const Nav = () => {
   return (
     <nav className="w-full flex-center bg-red-300">
-      {/* FIXME: */}
+      {/* FIXME: Make the logo stay on the left corner*/}
       <Link href="/">
         <Image
           src="/assets/images/logo.svg"

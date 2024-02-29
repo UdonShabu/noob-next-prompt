@@ -7,7 +7,7 @@ export default function Home() {
     <section className="flex flex-center flex-col">
       <h1 className="head_text text-center">
         Discover & Share
-        {/* FIXME: */}
+        {/* FIXME: Make it 2 lines then 1 line when md screen*/}
         <span className="orange_gradient text-center">AI-Powered Prompts</span>
       </h1>
       <p className="desc text-center">
