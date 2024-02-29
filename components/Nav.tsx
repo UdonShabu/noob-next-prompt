@@ -1,12 +1,11 @@
 "use client";
-import { getProviders } from "next-auth/react";
+import { getProviders, signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Nav = () => {
-  // TODO: Now use real session instead of this shit
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
 
   const [toggleDropDown, setToggleDropDown] = useState(false);
   const [providers, setProviders] = useState(null);
@@ -35,7 +34,7 @@ const Nav = () => {
 
       {/* Desktop navigation */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex flex_center gap-1 md:gap-3">
             <Link href="/" className="black_btn">
               Create Post
@@ -55,7 +54,12 @@ const Nav = () => {
           <>
             {providers &&
               Object.values(providers).map((provider) => (
-                <button type="button" key={provider.name} className="black_btn">
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className="black_btn"
+                >
                   Sign In
                 </button>
               ))}
@@ -66,7 +70,7 @@ const Nav = () => {
       {/* Mobile navigation */}
 
       <div className="sm:hidden  relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
               src="/assets/images/logo.svg"
@@ -88,7 +92,19 @@ const Nav = () => {
             )}
           </div>
         ) : (
-          <p>{/* TODO: List of providers */}</p>
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className="black_btn"
+                >
+                  Sign In
+                </button>
+              ))}
+          </>
         )}
       </div>
     </nav>

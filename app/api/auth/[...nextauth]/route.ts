@@ -6,10 +6,11 @@ import GithubProvider from "next-auth/providers/github";
 const handler = NextAuth({
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID!,
+      clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session }: any) {
       const sessionUser = await User.findOne({
