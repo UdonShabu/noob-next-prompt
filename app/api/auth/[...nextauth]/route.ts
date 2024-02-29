@@ -1,3 +1,4 @@
+import User from "@models/user";
 import { connectToDB } from "@utils/database";
 import NextAuth, { AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
@@ -10,11 +11,18 @@ const handler = NextAuth({
     }),
   ],
 
+  async session({ session }: any) {
+    const sessionUser = await User.findOne({
+      email: session.user.email,
+    });
+    session.user.id = sessionUser._id.toString();
+    return session;
+  },
   async signIn({ profile }: any) {
     try {
-      // TODO: Connect to mongodb
+      // TODO: User should be able to sign in
+
       await connectToDB();
-      return true;
     } catch (error) {
       console.log(error);
       return false;
