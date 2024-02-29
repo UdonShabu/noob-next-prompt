@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@styles/global.css"; //Can u fix the error?
 
 export const metadata: Metadata = {
   title: "Promptopia",
