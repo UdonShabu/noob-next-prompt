@@ -1,13 +1,22 @@
 "use client";
+import { getProviders } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Nav = () => {
-  // TODO: Show all login providers
-
   const isUserLoggedIn = true;
   const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setMyProviders = async () => {
+      const response = await getProviders();
+      setProviders(response);
+    };
+
+    setMyProviders();
+  }, []);
 
   return (
     <nav className="w-full flex-between mb-16 pt-4">
@@ -41,7 +50,14 @@ const Nav = () => {
             </Link>
           </div>
         ) : (
-          <p>{/* TODO: List of providers */}</p>
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button type="button" key={provider.name} className="black_btn">
+                  Sign In
+                </button>
+              ))}
+          </>
         )}
       </div>
 
