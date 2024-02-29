@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@styles/global.css"; //Can u fix the error?
+import "@styles/global.css";
+import Nav from "@components/Nav";
 
 export const metadata: Metadata = {
   title: "Promptopia",
@@ -18,7 +19,10 @@ export default function RootLayout({
         <div className="main">
           <div className="gradient" />
         </div>
-        <main className="app">{children}</main>
+        <main className="app">
+          <Nav />
+          {children}
+        </main>
       </body>
     </html>
   );
