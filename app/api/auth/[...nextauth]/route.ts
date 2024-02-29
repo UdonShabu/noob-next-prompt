@@ -1,3 +1,4 @@
+import { connectToDB } from "@utils/database";
 import NextAuth, { AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
@@ -12,7 +13,12 @@ const handler = NextAuth({
   async signIn({ profile }: any) {
     try {
       // TODO: Connect to mongodb
-    } catch (error) {}
+      await connectToDB();
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   },
 });
 
