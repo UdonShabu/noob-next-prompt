@@ -1,6 +1,6 @@
 import Image from "next/image";
 import "@styles/global.css";
-import Feed from "@components/feed";
+import Feed from "@components/Feed";
 
 export default function Home() {
   return (

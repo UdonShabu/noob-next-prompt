@@ -5,7 +5,9 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Nav = () => {
+  // TODO: Now use real session instead of this shit
   const isUserLoggedIn = true;
+
   const [toggleDropDown, setToggleDropDown] = useState(false);
   const [providers, setProviders] = useState(null);
 
