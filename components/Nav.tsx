@@ -4,6 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const Nav = () => {
+  // TODO: Show all login providers
+
   const isUserLoggedIn = true;
   const [toggleDropDown, setToggleDropDown] = useState(false);
 
@@ -39,7 +41,7 @@ const Nav = () => {
             </Link>
           </div>
         ) : (
-          <p>nani</p>
+          <p>{/* TODO: List of providers */}</p>
         )}
       </div>
 
@@ -68,7 +70,7 @@ const Nav = () => {
             )}
           </div>
         ) : (
-          <p>nani</p>
+          <p>{/* TODO: List of providers */}</p>
         )}
       </div>
     </nav>
